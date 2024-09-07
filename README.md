@@ -152,7 +152,7 @@ head(npdr_res, n = 15) |>
   set_table_properties(align = "center")
 ```
 
-<img src="README_files/figure-gfm/run-npdr-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/run-npdr-1.png" width="70%" class="center" style="display: block; margin: auto;" />
 
 ``` r
 # Main Effect Features
