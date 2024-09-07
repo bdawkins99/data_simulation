@@ -117,7 +117,7 @@ head(sim.dats[, c(1:15, ncol(sim.dats))], n = 10) |>
   set_table_properties(align = "center")
 ```
 
-<img src="simulate_data_example2_files/figure-gfm/create-sim-1.png" width="70%" />
+<img src="simulate_data_example2_files/figure-gfm/create-sim-1.png" width="100%" />
 
 ## Calculate Variable Importance
 
@@ -152,7 +152,7 @@ head(npdr_res, n = 15) |>
   set_table_properties(align = "center")
 ```
 
-<img src="simulate_data_example2_files/figure-gfm/run-npdr-1.png" width="60%" />
+<img src="simulate_data_example2_files/figure-gfm/run-npdr-1.png" width="100%" />
 
 ``` r
 # Main Effect Features
@@ -181,7 +181,7 @@ ggplot(plot_df, aes(x = Feature, y = `Center-scaled Feature Value`, color = Outc
         plot.title = element_text(size = 18, face = "bold", color = "black", hjust = 0.5))
 ```
 
-<img src="simulate_data_example2_files/figure-gfm/visualize-effects-1.png" width="80%" style="display: block; margin: auto;" />
+<img src="simulate_data_example2_files/figure-gfm/visualize-effects-1.png" width="100%" style="display: block; margin: auto;" />
 
 ## References
 
