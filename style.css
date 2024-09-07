@@ -2,3 +2,17 @@ p.caption {
   text-align: justify;
   font-size: 80%;
 }
+
+table,th,td{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  align-self: center;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}

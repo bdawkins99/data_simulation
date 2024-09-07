@@ -117,7 +117,7 @@ head(sim.dats[, c(1:15, ncol(sim.dats))], n = 10) |>
   set_table_properties(align = "center")
 ```
 
-<img src="README_files/figure-gfm/create-sim-1.png" width="100%" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/create-sim-1.png" width="100%" class="center" style="display: block; margin: auto;" />
 
 ## Calculate Variable Importance
 
@@ -152,7 +152,7 @@ head(npdr_res, n = 15) |>
   set_table_properties(align = "center")
 ```
 
-<img src="README_files/figure-gfm/run-npdr-1.png" width="70%" class="center" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/run-npdr-1.png" width="70%" style="display: block; margin: auto;" />
 
 ``` r
 # Main Effect Features
