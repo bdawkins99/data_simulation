@@ -1,7 +1,7 @@
 Simulated Datasets With Binary Outcomes
 ================
 Bryan Dawkins
-2024-09-06
+2024-09-07
 
 - <a href="#create-a-simulated-dataset"
   id="toc-create-a-simulated-dataset">Create a simulated dataset</a>
@@ -9,11 +9,6 @@ Bryan Dawkins
   - <a href="#calculate-variable-importance"
     id="toc-calculate-variable-importance">Calculate Variable Importance</a>
   - <a href="#references" id="toc-references">References</a>
-  
-<!-- MathJax -->
-<script type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
 
 ``` r
 library(knitr)
@@ -122,7 +117,7 @@ head(sim.dats[, c(1:15, ncol(sim.dats))], n = 10) |>
   set_table_properties(align = "center")
 ```
 
-<img src="README_files/figure-gfm/create-sim-1.png" width="100%" class="center" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/create-sim-1.png" width="100%" style="display: block; margin: auto;" />
 
 ## Calculate Variable Importance
 
@@ -157,7 +152,7 @@ head(npdr_res, n = 15) |>
   set_table_properties(align = "center")
 ```
 
-<img src="README_files/figure-gfm/run-npdr-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/run-npdr-1.png" width="70%" class="center" style="display: block; margin: auto;" />
 
 ``` r
 # Main Effect Features
@@ -186,7 +181,7 @@ ggplot(plot_df, aes(x = Feature, y = `Center-scaled Feature Value`, color = Outc
         plot.title = element_text(size = 18, face = "bold", color = "black", hjust = 0.5))
 ```
 
-<img src="README_files/figure-gfm/visualize-effects-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/visualize-effects-1.png" width="90%" class="center" style="display: block; margin: auto;" />
 
 ## References
 
