@@ -8,6 +8,7 @@ output:
     toc_float: yes
     fig_caption: yes
     css: "style.css"
+    always_allow_html: true
 params:
   author:
     input: text
