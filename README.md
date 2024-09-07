@@ -54,13 +54,13 @@ Both main effects and interaction effects were generated using the
 `createSimulation()` function in the `privateEC` R library. Main effects
 were created by employing the following linear model:
 
-\\[X_{ij} = \beta_i y_i + \epsilon_{ij}\text{,}\\]
+$$X_{ij} = \beta_i y_i + \epsilon_{ij}\text{,}$$
 
-where \\(X{ij}\\) is the value of the \\(i^{\text{th}}\\) feature for the
-\\(j^{\text{th}}\\) sample instance, \\(\beta_i\\) is the coefficient of the
-\\(i^{\text{th}}\\) feature, \\(y_i \in \{-1, 1\}\\) is the binary class of the
-\\(j^{\text{th}}\\) sample instance, and
-\\(\epsilon_{ij} \sim \mathcal{N}(0, 1)\\) is random noise from a standard
+where $X{ij}$ is the value of the $i^{\text{th}}$ feature for the
+$j^{\text{th}}$ sample instance, $\beta_i$ is the coefficient of the
+$i^{\text{th}}$ feature, $y_i \in \{-1, 1\}$ is the binary class of the
+$j^{\text{th}}$ sample instance, and
+$\epsilon_{ij} \sim \mathcal{N}(0, 1)$ is random noise from a standard
 normal distribution.<sup>1</sup>
 
 Interaction effects were based on a random graph (or network), where
@@ -70,12 +70,12 @@ controls) but completely disrupted/destroyed correlation in the
 ‘positive’ group (e.g., cases); see Figure 1.<sup>2</sup>
 
 ``` r
-knitr::include_graphics("interaction-sim_fig.png")
+knitr::include_graphics(here::here(plot_dir, "interaction-sim_fig.png"))
 ```
 
 <div class="figure" style="text-align: left">
 
-<img src="interaction-sim_fig.png" alt="**Figure 1. **The simulation of gene expression data with differential co-expression network effects begins with a gene network with given connectivity and degree distribution, such as scale-free (Step 1). Initially the data set, with N genes and M subjects, has correlation structure that does not differ between groups (Step 2). A detailed algorithm for Step 2 is given in Figure 2. Briefly, the data set is initialized to a random Gaussian matrix, and then genes are changed to be proportional to others based on their connections in the adjacency matrix (Step 1). The strength of the correlation is regulated by a Gaussian (0, noise) variable, where smaller noise creates stronger correlation between genes. To create differentially co-expressed genes (Step 3), we arbitrarily split the M columns of data into two groups (cases and controls) and select random genes for permutation (red x’s) in the cases group. Note that this permutation is distinct from the permutation used to assess significance. This permutation keeps the simulated group means the same, so there are no main effects, but disrupts the wiring or correlation in the cases group between the target gene and the genes it was connected to in the adjacency matrix from Step 1. The co-expression in the healthy control group is left unchanged, resulting in a complex data set with an embedded differential co-expression network." width="100%" />
+<img src="analysis/plots/interaction-sim_fig.png" alt="**Figure 1. **The simulation of gene expression data with differential co-expression network effects begins with a gene network with given connectivity and degree distribution, such as scale-free (Step 1). Initially the data set, with N genes and M subjects, has correlation structure that does not differ between groups (Step 2). A detailed algorithm for Step 2 is given in Figure 2. Briefly, the data set is initialized to a random Gaussian matrix, and then genes are changed to be proportional to others based on their connections in the adjacency matrix (Step 1). The strength of the correlation is regulated by a Gaussian (0, noise) variable, where smaller noise creates stronger correlation between genes. To create differentially co-expressed genes (Step 3), we arbitrarily split the M columns of data into two groups (cases and controls) and select random genes for permutation (red x’s) in the cases group. Note that this permutation is distinct from the permutation used to assess significance. This permutation keeps the simulated group means the same, so there are no main effects, but disrupts the wiring or correlation in the cases group between the target gene and the genes it was connected to in the adjacency matrix from Step 1. The co-expression in the healthy control group is left unchanged, resulting in a complex data set with an embedded differential co-expression network." width="100%" />
 <p class="caption">
 <strong>Figure 1.</strong> The simulation of gene expression data with differential
 co-expression network effects begins with a gene network with given
@@ -152,7 +152,7 @@ head(npdr_res, n = 15) |>
   set_table_properties(align = "center")
 ```
 
-<img src="README_files/figure-gfm/run-npdr-1.png" width="70%" class="center" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/run-npdr-1.png" width="70%" style="display: block; margin: auto;" />
 
 ``` r
 # Main Effect Features
@@ -181,7 +181,7 @@ ggplot(plot_df, aes(x = Feature, y = `Center-scaled Feature Value`, color = Outc
         plot.title = element_text(size = 18, face = "bold", color = "black", hjust = 0.5))
 ```
 
-<img src="README_files/figure-gfm/visualize-effects-1.png" width="90%" class="center" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/visualize-effects-1.png" width="90%" style="display: block; margin: auto;" />
 
 ## References
 
