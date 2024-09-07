@@ -1,3 +1,6 @@
+markdown: kramdown
+kramdown:
+    math_engine: katex
 bookdown::gitbook:
   self_contained: false
   css: style.css
