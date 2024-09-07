@@ -9,6 +9,11 @@ Bryan Dawkins
   - <a href="#calculate-variable-importance"
     id="toc-calculate-variable-importance">Calculate Variable Importance</a>
   - <a href="#references" id="toc-references">References</a>
+  
+<!-- MathJax -->
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 ``` r
 library(knitr)
