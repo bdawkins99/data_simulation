@@ -1,0 +1,57 @@
+EpistasisKatz           Rank variables by EpistasisKatz algorithm.
+EpistasisRank           'EpistasisRank'
+attr.range              =========================================================================#
+                        Compute denominator of the diff formula for
+                        each attribute x (column) in my.mat, max(x) -
+                        min(x)
+auPRC                   auPRC
+case.control.3sets      case-control interaction effect data
+createMainEffects       Create a simulated data set with main effects
+createSimulation2       createSimulation2 update to createSimulation2()
+                        that allows for rs-fMRI data generation.
+createfMRIsimulation    createfMRIsimulation
+detected                detected
+detectionStats          detectionStats
+diffRegression          diffRegression
+fitInteractionModel     'fitInteractionModel'
+fitMainEffectModel      'fitMainEffectModel' Get the main effect of a
+                        variable using generalized linear regression .
+geneLowVarianceFilter   geneLowVarianceFilter
+generate_structured_corrmat
+                        generate_structured_corrmat
+getInteractionEffects   'getInteractionEffects'
+getMainEffects          'getMainEffects' Wrapper for fitMainEffectModel
+                        with sapply over independent variable names.
+                        Does not include covariates, so if you have
+                        covariates use indVarNames =
+                        colnames(dats)[1:(ncol(dats) - nCovs - 1)] if
+                        the columns are organized as: independent vars,
+                        covars, pheno
+get_Ri_nearest          Get the indices of samples nearest to Ri
+hamming.binary          Hamming distance for a binary matrix
+                        https://johanndejong.wordpress.com/2015/10/02/faster-hamming-distance-in-r-2/
+knnSURF                 knnSURF
+knnSURF.balanced        knnSURF.balanced
+knnVec                  knnVec
+mdd.RNAseq.small        RNA-Seq from the paper referenced below.
+nearestNeighbors        nearestNeighbors
+nearestNeighbors2       nearestNeighbors2
+nearestNeighborsSeparateHitMiss
+                        nearestNeighborsSeparateHitMiss
+npdr                    npdr
+npdrDiff                npdrDiff
+npdrDistances           npdrDistances
+npdrDistances2          npdrDistances2
+npdrLearner             npdrLearner
+npdrLearnerCV           'npdrLearnerCV'
+predictors.mat          case-control interaction effect data, features
+                        only
+qtrait.3sets            quantitative trait main effect data
+regain                  'getMainEffects'
+rownames2columns        Convert rownames to column.
+splitDataset            Split a data set for machine learning
+                        classification
+testdata10              Test data from Rinbix
+uniReg                  uniReg
+uniqueNeighbors         uniqueNeighbors
+vwok                    vwok

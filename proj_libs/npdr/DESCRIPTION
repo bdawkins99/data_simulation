@@ -1,0 +1,34 @@
+Package: npdr
+Title: Nearest-neighbor Projected-Distance Regression
+Version: 0.0.0.9000
+Authors@R: c(person("Brett", "McKinney", email = "brett.mckinney@gmail.com", role = c("aut", "cre")),
+  person("Trang", "Le", email = "ttle@pennmedicine.upenn.edu", role = c("aut")))
+Description: What the package does (one paragraph).
+Depends: R (>= 3.3.2)
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports: dplyr, rlang, PRROC
+Suggests: knitr, CORElearn, speedglm, ggplot2, doParallel, parallel,
+        foreach, flexclust, glmnet, rmarkdown, wordspace, tibble,
+        tidyr, testthat (>= 3.0.0)
+RoxygenNote: 7.2.2
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+RemoteType: github
+RemoteHost: api.github.com
+RemoteRepo: npdr
+RemoteUsername: insilico
+RemoteRef: HEAD
+RemoteSha: 1aa134b6e82b700460e4b6392ef60ae2f80dfcfc
+GithubRepo: npdr
+GithubUsername: insilico
+GithubRef: HEAD
+GithubSHA1: 1aa134b6e82b700460e4b6392ef60ae2f80dfcfc
+NeedsCompilation: yes
+Packaged: 2023-07-25 15:06:10 UTC; bdawk
+Author: Brett McKinney [aut, cre],
+  Trang Le [aut]
+Maintainer: Brett McKinney <brett.mckinney@gmail.com>
+Built: R 4.2.2; ; 2023-07-25 15:06:12 UTC; windows
+ExperimentalWindowsRuntime: ucrt
