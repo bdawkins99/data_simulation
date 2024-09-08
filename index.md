@@ -9,7 +9,7 @@ Bryan Dawkins
   - <a href="#calculate-variable-importance"
     id="toc-calculate-variable-importance">Calculate Variable Importance</a>
   - <a href="#references" id="toc-references">References</a>
-
+  
 <head>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
@@ -184,7 +184,34 @@ ggplot(plot_df, aes(x = Feature, y = `Center-scaled Feature Value`, color = Outc
         plot.title = element_text(size = 18, face = "bold", color = "black", hjust = 0.5))
 ```
 
-<img src="index_files/figure-gfm/visualize-effects-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="index_files/figure-gfm/visualize-MainEffects-1.png" width="90%" style="display: block; margin: auto;" />
+
+``` r
+# Interaction Effect Features
+plot_df <- sim.dats |> 
+  select(all_of(c(paste0("simvar", 6:10), "class"))) |> 
+  mutate(Outcome = factor(case_when(
+    class == 1 ~ "Case",
+    TRUE ~ "Control"
+  ), levels = c("Case", "Control"))) |> 
+  pivot_longer(cols = paste0("simvar", 6:10), values_to = "Center-scaled Feature Value", names_to = "Feature") |> 
+  mutate(Feature = as.factor(Feature))
+
+plot_df <- sim.dats |> 
+  mutate(Outcome = factor(case_when(
+    class == 1 ~ "Case",
+    TRUE ~ "Control"
+  ), levels = c("Case", "Control")))
+
+cols <- c("Case" = "#7a0177", "Control" = "#225ea8")
+alphs <- c("Case" = 0.6, "Control" = 0.6)
+ggpairs(plot_df, aes(color = Outcome, fill = Outcome, alpha = 0.7),
+        columns = 6:10) +
+  discrete_scale(aesthetics = c("fill", "color"), palette = grDevices::colorRampPalette(c("#7a0177", "#225ea8"))) +
+  theme_bw()
+```
+
+<img src="index_files/figure-gfm/visualize-InteractionEffects-1.png" width="100%" style="display: block; margin: auto;" />
 
 ## References
 

@@ -35,7 +35,7 @@ params:
   interaction_bias:
     input: numeric
     label: "How strong should effect sizes be for interaction effects? (Note: Effect size decreases as parameter value increases; values should be > 0)"
-    value: 0.4
+    value: 0.2
   percent_mixed:
     input: numeric
     label: "What proportion of functional features (i.e., those simulated to have significant statistical effect) should have main effect?"
@@ -85,6 +85,7 @@ library(DT)
 library(captioner)
 library(npdr)
 library(tidyr)
+library(GGally)
 ```
 
 ```{r}
@@ -159,7 +160,7 @@ head(npdr_res, n = 15) |>
   set_table_properties(align = "center")
 ```
 
-```{r visualize-effects, fig.align = "center", out.width = "90%"}
+```{r visualize-MainEffects, fig.align = "center", out.width = "90%"}
 
 # Main Effect Features
 plot_df <- sim.dats |> 
@@ -187,6 +188,33 @@ ggplot(plot_df, aes(x = Feature, y = `Center-scaled Feature Value`, color = Outc
         plot.title = element_text(size = 18, face = "bold", color = "black", hjust = 0.5))
 
 ```
+
+```{r visualize-InteractionEffects, fig.align = "center", out.width = "100%"}
+
+# Interaction Effect Features
+plot_df <- sim.dats |> 
+  select(all_of(c(paste0("simvar", 6:10), "class"))) |> 
+  mutate(Outcome = factor(case_when(
+    class == 1 ~ "Case",
+    TRUE ~ "Control"
+  ), levels = c("Case", "Control"))) |> 
+  pivot_longer(cols = paste0("simvar", 6:10), values_to = "Center-scaled Feature Value", names_to = "Feature") |> 
+  mutate(Feature = as.factor(Feature))
+
+plot_df <- sim.dats |> 
+  mutate(Outcome = factor(case_when(
+    class == 1 ~ "Case",
+    TRUE ~ "Control"
+  ), levels = c("Case", "Control")))
+
+cols <- c("Case" = "#7a0177", "Control" = "#225ea8")
+alphs <- c("Case" = 0.6, "Control" = 0.6)
+ggpairs(plot_df, aes(color = Outcome, fill = Outcome, alpha = 0.7),
+        columns = 6:10) +
+  discrete_scale(aesthetics = c("fill", "color"), palette = grDevices::colorRampPalette(c("#7a0177", "#225ea8"))) +
+  theme_bw()
+```
+
 
 ## References
 1. Leek, J. T., and J. D. Storey. "Capturing Heterogeneity in Gene Expression Studies by Surrogate Variable Analysis." PLoS Genet 3, no. 9 (Sep 2007): 1724-35. https://dx.doi.org/10.1371/journal.pgen.0030161.
