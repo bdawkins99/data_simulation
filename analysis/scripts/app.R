@@ -10,6 +10,7 @@
 library(shiny)
 library(here)
 #library(privateEC, here::here("data_simulation", "proj_libs"))
+library(lme4, here::here("data_simulation", "proj_libs"))
 library(dplyr)
 library(ggplot2)
 library(flextable)
