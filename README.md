@@ -62,7 +62,7 @@ $$X_{ij} = \beta_i y_i + \epsilon_{ij}\text{,}$$
 
 where $X$<sub>ij</sub> is the value of the $i$<sup>th</sup> feature for the
 $j$<sup>th</sup> sample instance, $\beta_i$ is the coefficient of the
-$i$<sup>th</sup> feature, $y$$<sub>i</sub>$ $\in$ {-1, 1} is the binary class of the
+$i$<sup>th</sup> feature, $y_i$ $\in$ $\{$$-1$$,$ $1$$\}$ is the binary class of the
 $j$^<sup>th</sup> sample instance, and $\epsilon$$<sub>ij</sub>$ $\sim$ $\mathcal{N}$(0, 1)
 is random noise from a standard normal distribution.<sup>1</sup>
 
