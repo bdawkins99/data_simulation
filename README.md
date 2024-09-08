@@ -62,8 +62,8 @@ $$X_{ij} = \beta_i y_i + \epsilon_{ij}\text{,}$$
 
 where $$X_{ij}$$ is the value of the $$i^\text{th}$$ feature for the
 $$j^\text{th}$$ sample instance, $$\beta_i$$ is the coefficient of the
-$$i^\text{th}$$ feature, $$y_i \in \left{-1, 1\right}$$ is the binary class of the
-$$j^\text{th}$$ sample instance, and $$\epsilon_{ij} \sim \mathcal{N}\left(0, 1\right)$$
+$$i^\text{th}$$ feature, $$y_i \in \left\lbrace-1, 1\right\rbrace}$$ is the binary class of the
+$$j^\text{th}$$ sample instance, and $$\epsilon_{ij} \sim \mathcal{N}(0, 1)$$
 is random noise from a standard normal distribution.<sup>1</sup>
 
 Interaction effects were based on a random graph (or network), where
