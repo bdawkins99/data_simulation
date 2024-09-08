@@ -1,0 +1,46 @@
+Package: privateEC
+Type: Package
+Title: Privacy Preserving Evaporative Cooling Feature Selection and
+        Classification with Relief-F and Random Forests
+Version: 0.99
+Date: 2017-08-11
+Authors@R: as.person(c(
+    "Brett McKinney <brett-mckinney@utulsa.edu> [aut, cre]", 
+    "Trang Le <trang-le@utulsa.edu> [aut]",
+    "Bill White <bill.c.white@gmail.com> [aut]",
+    "Saeid Parvandeh <parvandehsaied@gmail.com> [aut]"
+  ))
+Description: The privateEC algorithm along with other comparison algorithms used in the 
+    Bioinformatics paper referenced below: 
+    Trang T. Le, W. K. Simmons, M. Misaki, B.C. White, J. Savitz, J. Bodurka, and 
+    B. A. McKinney. “Differential privacy-based Evaporative Cooling feature selection 
+    and classification with Relief-F and Random Forests,” Bioinformatics. 
+    https://doi.org/10.1093/bioinformatics/btx298. 2017.
+URL: http:/insilico.utulsa.edu/privateEC
+License: GPL-3
+Depends: R (>= 3.1.0)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.0
+Imports: e1071, randomForest, xgboost, CORElearn, reshape2, igraph,
+        methods, caret, glmnet, stats, utils
+Suggests: testthat, knitr, rmarkdown, devtools, roxygen2
+VignetteBuilder: knitr
+RemoteType: github
+RemoteHost: api.github.com
+RemoteRepo: privateEC
+RemoteUsername: insilico
+RemoteRef: HEAD
+RemoteSha: 99af6c8236c08e950ee9dc873a945b7ee001b4c5
+GithubRepo: privateEC
+GithubUsername: insilico
+GithubRef: HEAD
+GithubSHA1: 99af6c8236c08e950ee9dc873a945b7ee001b4c5
+NeedsCompilation: no
+Packaged: 2024-09-08 21:11:35 UTC; bdawk
+Author: Brett McKinney [aut, cre],
+  Trang Le [aut],
+  Bill White [aut],
+  Saeid Parvandeh [aut]
+Maintainer: Brett McKinney <brett-mckinney@utulsa.edu>
+Built: R 4.2.2; ; 2024-09-08 21:11:36 UTC; windows

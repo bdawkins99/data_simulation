@@ -1,0 +1,34 @@
+compileAndSaveAllResults
+                        Compile the results of a simulation +
+                        classifier methods run
+convert.pec.sim.to.inbix
+                        convert.pec.sim.to.inbix
+createInteractions      Create a differentially coexpressed data set
+                        with interactions
+createMainEffects       Create a simulated data set with main effects
+createMixedSimulation   Create a data simulation with a mix of main and
+                        interaction effects.
+createSimulation        Create a data simulation and return
+                        train/holdout/validation data sets.
+epistasisRank           Compute and return epistasis rank scores
+getImportanceScores     Compute and return importance scores (Relief-F
+                        scores)
+originalThresholdout    Original Thresholdout algorithm
+paperRealWorkflow       Runs the four comparison algorithms on the
+                        passed correlation matrix and phenotypes.
+                        Returns a data frame of run results for each.
+paperSimWorkflow        Workflow for running one simulation of the
+                        Bioinformatics paper workflow
+plotRunResults          Plot the results of a privateEC workflow for a
+                        quick plot/review with base graphics.
+privateEC               Private Evaporative Cooling feature selection
+                        and classification
+privateEC-package       Welcome to privateEC
+privateRF               Private random forests algorithm
+rsfMRIcorrMDD           An MRI data set used used in the paper
+                        referenced below.
+splitDataset            Split a data set for machine learning
+                        classification
+standardRF              Standard random forests algorithm serves as a
+                        baseline model
+xgboostRF               xgboost random forests algorithm

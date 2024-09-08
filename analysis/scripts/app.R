@@ -9,7 +9,7 @@
 
 library(shiny)
 library(here)
-library(privateEC)
+library(privateEC, here::here("data_simulation", "proj_libs"))
 library(dplyr)
 library(ggplot2)
 library(flextable)
