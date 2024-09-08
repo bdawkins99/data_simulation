@@ -9,7 +9,7 @@
 
 library(shiny)
 library(here)
-library(privateEC, here::here("data_simulation", "proj_libs"))
+#library(privateEC, here::here("data_simulation", "proj_libs"))
 library(dplyr)
 library(ggplot2)
 library(flextable)
@@ -21,6 +21,7 @@ library(tidyr)
 library(GGally)
 
 script_dir <- here::here("analysis", "scripts")
+source(here::here(script_dir, "privateEC_sim-funcs.R"))
 source(here::here(script_dir, "main-effect_plus_interaction-effect_continuous-features_simulation.R"))
 
 # Define UI for application that draws a histogram
