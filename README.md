@@ -10,9 +10,9 @@ Bryan Dawkins
     id="toc-calculate-variable-importance">Calculate Variable Importance</a>
   - <a href="#references" id="toc-references">References</a>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js" integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+<head>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
 
 ``` r
 library(knitr)
@@ -60,12 +60,11 @@ were created by employing the following linear model:
 
 $$X_{ij} = \beta_i y_i + \epsilon_{ij}\text{,}$$
 
-where $X{ij}$ is the value of the $i^{\text{th}}$ feature for the
-$j^{\text{th}}$ sample instance, $\beta_i$ is the coefficient of the
-$i^{\text{th}}$ feature, $y_i \in \{-1, 1\}$ is the binary class of the
-$j^{\text{th}}$ sample instance, and
-$\epsilon_{ij} \sim \mathcal{N}(0, 1)$ is random noise from a standard
-normal distribution.<sup>1</sup>
+where $X$<sub>ij</sub> is the value of the $i$<sup>th</sup> feature for the
+$j$<sup>th</sup> sample instance, $\beta$$<sub>i</sub>$ is the coefficient of the
+$i$<sup>th</sup> feature, $y$$<sub>i</sub>$ $\in$ {-1, 1} is the binary class of the
+$j$^<sup>th</sup> sample instance, and $\epsilon$$<sub>ij</sub>$ $\sim$ $\mathcal{N}$(0, 1)
+is random noise from a standard normal distribution.<sup>1</sup>
 
 Interaction effects were based on a random graph (or network), where
 connected features are differentially correlated between class groups,
