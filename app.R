@@ -93,6 +93,9 @@ server <- function(input, output) {
                    input$pct.validation,
                    input$label) |> 
         mutate(across(where(is.numeric), ~format(round(.x, digits = 3), nsmall = 3))),
+      rownames     = FALSE,
+      style        = "bootstrap",
+      extensions   = "Buttons",
       options = list(
         dom          = "Bfrtip",
         buttons      = c(I("colvis"), "copy", "csv", "pdf"),
