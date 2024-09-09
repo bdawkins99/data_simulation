@@ -9,6 +9,8 @@ process_sim_yaml <- function(yaml.params){
                         if ( .v != "class_label" ) {
                           if ( length ( grep(.v, pattern = "percent", value = FALSE) ) > 0 ) {
                             paste0("pct.", strsplit(.v, split = "_")[[1]][2])
+                          } else if ( length ( grep(.v, pattern = "rand", value = FALSE ) ) > 0 ){
+                            strsplit(.v, split = "_")[[1]][2]
                           } else {
                             paste0(strsplit(.v, split = "_")[[1]], collapse= ".")
                           }

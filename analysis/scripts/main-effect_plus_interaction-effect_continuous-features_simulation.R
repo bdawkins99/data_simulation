@@ -29,18 +29,18 @@ library(privateEC)
 #   
 #   Functional variables are named simvar1, simvar2, ..., simvarN1 and noise is just var1, var2, ..., varN2.
 #
-sim_mixed_fn <- function(num.samples=100,      # number of samples
-                         num.variables=100,    # number of variables
-                         pct.imbalance=0.5,    # fraction
-                         pct.signals=0.1,
-                         main.bias=0.8,
-                         interaction.bias=0.4,
-                         pct.mixed=0.5,
-                         pct.train=0.5,
-                         pct.holdout=0.5,
-                         pct.validation=0,
-                         label="class"){
+sim_mixed_fn <- function(seed             = 1234,
+                         num.samples      = 100,      # number of samples
+                         num.variables    = 100,    # number of variables
+                         pct.imbalance    = 0.5,    # fraction
+                         pct.signals      = 0.1,
+                         main.bias        = 0.8,
+                         interaction.bias = 0.4,
+                         pct.mixed        = 0.5,
+                         label            = "class"){
   
+  rand.seeds <- withr::with_seed(seed, 
+                                 sample(1:10000, size = 2, replace = FALSE))
   num.attr <- num.variables
   num.samp <- num.samples
   main.bias <- main.bias
@@ -53,16 +53,34 @@ sim_mixed_fn <- function(num.samples=100,      # number of samples
   n.noise <- num.attr - n.sig
   
   # interactionErdos simulation
-    sim.data <- createSimulation(num.samples = num.samp, num.variables = num.attr, pct.imbalance=pct.imbalance,
-                                 pct.signals = pct.signals, pct.train = 1/2, pct.holdout = 1/2,  label=label,
-                                 bias = int.bias, sim.type = "interactionErdos", verbose = FALSE)
+    sim.data <- withr::with_seed(rand.seeds[1],
+                    createSimulation(num.samples   = num.samp, 
+                                     num.variables = num.attr, 
+                                     pct.imbalance = pct.imbalance,
+                                     pct.signals   = pct.signals, 
+                                     pct.train     = 0.5, 
+                                     pct.holdout   = 0.5,  
+                                     label         = label,
+                                     bias          = int.bias, 
+                                     sim.type      = "interactionErdos", 
+                                     verbose       = FALSE)
+                    )
     dat <- rbind(sim.data$train, sim.data$holdout)
     predictors.mat <- dat[, - which(colnames(dat) == label)]
   
   # main effect simulation
-    sim.data2 <- createSimulation(num.samples = num.samp, num.variables = num.attr, pct.imbalance=pct.imbalance,
-                                  pct.signals = pct.signals, pct.train = 1/2, pct.holdout = 1/2, label=label,
-                                  bias = main.bias, sim.type = "mainEffect", verbose = FALSE)
+    sim.data2 <- withr::with_seed(rand.seeds[2], 
+                                  createSimulation(num.samples   = num.samp, 
+                                                   num.variables = num.attr, 
+                                                   pct.imbalance = pct.imbalance,
+                                                   pct.signals   = pct.signals, 
+                                                   pct.train     = 0.5, 
+                                                   pct.holdout   = 0.5, 
+                                                   label         = label,
+                                                   bias          = main.bias, 
+                                                   sim.type      = "mainEffect", 
+                                                   verbose       = FALSE)
+                                  )
     dat2 <- rbind(sim.data2$train, sim.data2$holdout)
     predictors.mat2 <- dat2[, - which(colnames(dat2) == label)]
   
@@ -95,9 +113,6 @@ sim_mixed_fn <- function(num.samples=100,      # number of samples
 #                        pct.signals=pct.signals,
 #                        main.bias=main.bias,
 #                        interaction.bias=int.bias,
-#                        pct.mixed=pct.mixed,
-#                        pct.train=0.5,
-#                        pct.holdout=0.5,
-#                        pct.validation=0)
+#                        pct.mixed=pct.mixed)
 #dim(my.dats)
 #colnames(my.dats)

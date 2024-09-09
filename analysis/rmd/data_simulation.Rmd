@@ -18,6 +18,10 @@ params:
     input: text
     label: "Specify folder name for analyses:"
     value: "analysis"
+  rand_seed:
+    input: numeric
+    label: "Random seed for reproducibility:"
+    value: 1234
   num_samples:
     input: numeric
     label: "How many samples should simulated datasets have?"
@@ -46,18 +50,6 @@ params:
     input: numeric
     label: "What proportion of functional features (i.e., those simulated to have significant statistical effect) should have main effect?"
     value: 0.5
-  percent_train:
-    input: numeric
-    label: "What proportion of total number of samples should be used for training?"
-    value: 0.5
-  percent_holdout:
-    input: numeric
-    label: "What proportion of total number of samples should be used for holdout?"
-    value: 0.5
-  percent_validation:
-    input: numeric
-    label: "What proportion of total number of samples should be used for validation?"
-    value: 0
   class_label:
     input: text
     label: "What is the name of the binary outcome (i.e., dependent variable) in simulated datasets?"
@@ -168,6 +160,7 @@ npdr_res |>
   # set_table_properties(align = "center")
 ```
 
+## Visualize Main effects
 ```{r visualize-MainEffects, fig.align = "center", out.width = "90%"}
 
 # Main Effect Features
@@ -197,6 +190,7 @@ ggplot(plot_df, aes(x = Feature, y = `Center-scaled Feature Value`, color = Outc
 
 ```
 
+## Visualize Interaction Effects
 ```{r visualize-InteractionEffects, fig.align = "center", out.width = "100%"}
 
 # Interaction Effect Features
@@ -219,8 +213,11 @@ cols <- c("Case" = "#7a0177", "Control" = "#225ea8")
 alphs <- c("Case" = 0.6, "Control" = 0.6)
 ggpairs(plot_df, aes(color = Outcome, fill = Outcome, alpha = 0.7),
         columns = 6:10) +
-  discrete_scale(aesthetics = c("fill", "color"), palette = grDevices::colorRampPalette(c("#7a0177", "#225ea8"))) +
-  theme_bw()
+  discrete_scale(aesthetics = c("fill", "color"), 
+                 palette = grDevices::colorRampPalette(c("#7a0177", "#225ea8"))) +
+  ggtitle("Simulated Features With Interaction Effect") +
+  theme_bw() +
+  theme(plot.title = element_text(size = 18, face = "bold", color = "black", hjust = 0.5))
 ```
 
 
