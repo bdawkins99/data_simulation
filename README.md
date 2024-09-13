@@ -23,7 +23,9 @@ vignette("RealDataExample")
 
 
 ## Usage
-The main function (`sim_mixed_fn()`) used in examples within this repository is defined here: `analysis/scripts/main-effect_plus_interaction-effect_continuous-features_simulation.R`
+The main function (`sim_mixed_fn()`) used in examples within this repository is defined here:
+
+`analysis/scripts/main-effect_plus_interaction-effect_continuous-features_simulation.R`
 
 The following example will generate a dataset with 100 samples and 100 independent variables. The data are balanced with respect to the outcome (`pct.imbalance = 0.5`), and 10% (`pct.signals`) of the independent variables will be functionally associated with the outcome. The strength of main effects can be controlled with `main.bias`, where larger values produce stronger main effects. On the other hand, the strength of interaction effects can be controlled with `interaction.bias`, where smaller values produce stronger interaction effects. Functional independent variables will either have main effect or interaction effect but NOT both; all other independent variables are random Gaussian noise. The proportion of functional independent variables involved in interactions is controlled with `pct.mixed`, which also determines the proportion with main effect (`1 - pct.mixed`). In this example, 5 features will have main effect, 5 will have interaction effects, and 90 will be random noise. These data can be used to assess the performance of a model in classification and/or in detecting functional features.
 
