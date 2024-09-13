@@ -82,6 +82,10 @@ Many more detailed examples are given here:
 
 Create your own downloadable simulated dataset with this Shiny app:
 
+**shinyapps.io (less buggy)**
+<https://ew68xk-bryan.shinyapps.io/data_simulation/>
+
+**Posit Connect Cloud (somewhat buggy)**
 <https://connect.posit.cloud/bdawkins99/content/0191d42b-e634-a7cf-8f3b-564ffb047d4a>
 
 
