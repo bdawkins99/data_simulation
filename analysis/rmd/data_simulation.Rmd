@@ -102,6 +102,7 @@ report_dir <- here::here(params$path_analysis, "reports")
 source(here::here(script_dir, "main-effect_plus_interaction-effect_continuous-features_simulation.R"))
 source(here::here(script_dir, "create_html_datatable.R"))
 source(here::here(script_dir, "process_sim_yaml.R"))
+source(here::here(script_dir, "calc-uni.R"))
 ```
 
 ```{r sim-args}
@@ -220,6 +221,44 @@ ggpairs(plot_df, aes(color = Outcome, fill = Outcome, alpha = 0.7),
   theme(plot.title = element_text(size = 18, face = "bold", color = "black", hjust = 0.5))
 ```
 
+## Standard Univariate Statistics for Detecting Main Effects {.tabset}
+
+### t-test
+```{r}
+create_stat_tab(.data = sim.dats, test.name = "t-test", response.name = "class") |> 
+  format_stat_tab(n.digits = 3) |> 
+  create_html_DT()
+```
+
+### Kolmogorov-Smirnov Test
+```{r}
+create_stat_tab(.data = sim.dats, test.name = "ks-test", response.name = "class") |> 
+  format_stat_tab(n.digits = 3) |> 
+  create_html_DT()
+```
+
+### Wilcoxon Rank Sum (or Mann-Whitney) Test
+```{r}
+create_stat_tab(.data = sim.dats, test.name = "wilcox-test", response.name = "class") |> 
+  format_stat_tab(n.digits = 3) |> 
+  create_html_DT()
+```
+
+### Kruskal-Wallis Test
+```{r}
+
+create_stat_tab(.data = sim.dats, test.name = "kw-test", response.name = "class") |> 
+  format_stat_tab(n.digits = 3) |> 
+  create_html_DT()
+```
+
+### Test Statistic for Main Effect in Linear Model
+```{r}
+
+create_stat_tab(.data = sim.dats, test.name = "lm-test", response.name = "class") |> 
+  format_stat_tab(n.digits = 3) |> 
+  create_html_DT()
+```
 
 ## References
 1. Leek, J. T., and J. D. Storey. "Capturing Heterogeneity in Gene Expression Studies by Surrogate Variable Analysis." PLoS Genet 3, no. 9 (Sep 2007): 1724-35. https://dx.doi.org/10.1371/journal.pgen.0030161.

@@ -1,18 +1,21 @@
 Simulated Datasets With Binary Outcomes
 ================
 Bryan Dawkins
-2024-09-07
+2024-09-13
 
 - <a href="#create-a-simulated-dataset"
   id="toc-create-a-simulated-dataset">Create a simulated dataset</a>
   - <a href="#output-object" id="toc-output-object">Output Object</a>
   - <a href="#calculate-variable-importance"
     id="toc-calculate-variable-importance">Calculate Variable Importance</a>
+  - <a href="#visualize-main-effects"
+    id="toc-visualize-main-effects">Visualize Main effects</a>
+  - <a href="#visualize-interaction-effects"
+    id="toc-visualize-interaction-effects">Visualize Interaction Effects</a>
+  - <a href="#standard-univariate-statistics-for-detecting-main-effects"
+    id="toc-standard-univariate-statistics-for-detecting-main-effects">Standard
+    Univariate Statistics for Detecting Main Effects</a>
   - <a href="#references" id="toc-references">References</a>
-  
-<head>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-</head>
 
 ``` r
 library(knitr)
@@ -36,6 +39,7 @@ report_dir <- here::here(params$path_analysis, "reports")
 source(here::here(script_dir, "main-effect_plus_interaction-effect_continuous-features_simulation.R"))
 source(here::here(script_dir, "create_html_datatable.R"))
 source(here::here(script_dir, "process_sim_yaml.R"))
+source(here::here(script_dir, "calc-uni.R"))
 ```
 
 ``` r
@@ -157,6 +161,8 @@ head(npdr_res, n = 15) |>
 
 <img src="index_files/figure-gfm/run-npdr-1.png" width="70%" style="display: block; margin: auto;" />
 
+## Visualize Main effects
+
 ``` r
 # Main Effect Features
 plot_df <- sim.dats |> 
@@ -184,7 +190,9 @@ ggplot(plot_df, aes(x = Feature, y = `Center-scaled Feature Value`, color = Outc
         plot.title = element_text(size = 18, face = "bold", color = "black", hjust = 0.5))
 ```
 
-<img src="index_files/figure-gfm/visualize-MainEffects-1.png" width="90%" style="display: block; margin: auto;" />
+<img src="index_files/figure-gfm/visualize-MainEffects-1.png" width="70%" style="display: block; margin: auto;" />
+
+## Visualize Interaction Effects
 
 ``` r
 # Interaction Effect Features
@@ -208,10 +216,83 @@ alphs <- c("Case" = 0.6, "Control" = 0.6)
 ggpairs(plot_df, aes(color = Outcome, fill = Outcome, alpha = 0.7),
         columns = 6:10) +
   discrete_scale(aesthetics = c("fill", "color"), palette = grDevices::colorRampPalette(c("#7a0177", "#225ea8"))) +
-  theme_bw()
+  ggtitle("Simulated Features With Interaction Effect") +
+  theme_bw() +
+  theme(plot.title = element_text(size = 18, face = "bold", color = "black", hjust = 0.5))
 ```
 
 <img src="index_files/figure-gfm/visualize-InteractionEffects-1.png" width="100%" style="display: block; margin: auto;" />
+
+## Standard Univariate Statistics for Detecting Main Effects
+
+### t-test
+
+``` r
+head(create_stat_tab(.data = sim.dats, 
+                     test.name = "t-test", 
+                     response.name = "class") |> 
+       select(-all_of(c("estimate1", "estimate2", "parameter", "method", "formula"))), n = 10) |> 
+  format_stat_tab(n.digits = 3) |> 
+  flextable() |> 
+  set_table_properties(align = "center")
+```
+
+<img src="index_files/figure-gfm/unnamed-chunk-2-1.png" width="70%" style="display: block; margin: auto;" />
+
+### Kolmogorov-Smirnov Test
+
+``` r
+head(create_stat_tab(.data = sim.dats, 
+                     test.name = "ks-test", 
+                     response.name = "class") |> 
+       select(-all_of(c("method", "formula", "exact"))), n = 10) |> 
+  format_stat_tab(n.digits = 3) |> 
+  flextable() |> 
+  set_table_properties(align = "center")
+```
+
+<img src="index_files/figure-gfm/unnamed-chunk-3-1.png" width="70%" style="display: block; margin: auto;" />
+
+### Wilcoxon Rank Sum (or Mann-Whitney) Test
+
+``` r
+head(create_stat_tab(.data = sim.dats, 
+                     test.name = "wilcox-test", 
+                     response.name = "class") |> 
+       select(-all_of(c("method", "formula"))), n = 10) |> 
+  format_stat_tab(n.digits = 3) |> 
+  flextable() |> 
+  set_table_properties(align = "center")
+```
+
+<img src="index_files/figure-gfm/unnamed-chunk-4-1.png" width="70%" style="display: block; margin: auto;" />
+
+### Kruskal-Wallis Test
+
+``` r
+head(create_stat_tab(.data = sim.dats, 
+                     test.name = "kw-test", 
+                     response.name = "class") |> 
+       select(-all_of(c("parameter", "method", "formula"))), n = 10) |> 
+  format_stat_tab(n.digits = 3) |> 
+  flextable() |> 
+  set_table_properties(align = "center")
+```
+
+<img src="index_files/figure-gfm/unnamed-chunk-5-1.png" width="70%" style="display: block; margin: auto;" />
+
+### Test Statistic for Main Effect in Linear Model
+
+``` r
+head(create_stat_tab(.data = sim.dats, 
+                     test.name = "lm-test", 
+                     response.name = "class"), n = 10) |> 
+  format_stat_tab(n.digits = 3) |> 
+  flextable() |> 
+  set_table_properties(align = "center")
+```
+
+<img src="index_files/figure-gfm/unnamed-chunk-6-1.png" width="70%" style="display: block; margin: auto;" />
 
 ## References
 

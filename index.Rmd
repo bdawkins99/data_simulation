@@ -40,18 +40,6 @@ params:
     input: numeric
     label: "What proportion of functional features (i.e., those simulated to have significant statistical effect) should have main effect?"
     value: 0.5
-  percent_train:
-    input: numeric
-    label: "What proportion of total number of samples should be used for training?"
-    value: 0.5
-  percent_holdout:
-    input: numeric
-    label: "What proportion of total number of samples should be used for holdout?"
-    value: 0.5
-  percent_validation:
-    input: numeric
-    label: "What proportion of total number of samples should be used for validation?"
-    value: 0
   class_label:
     input: text
     label: "What is the name of the binary outcome (i.e., dependent variable) in simulated datasets?"
@@ -66,6 +54,8 @@ params:
 author: '`r params$author`'
 title: "Simulated Datasets With Binary Outcomes"
 date: '`r Sys.Date()`'
+editor_options: 
+  chunk_output_type: inline
 ---
 
 ```{r setup}
@@ -104,6 +94,7 @@ report_dir <- here::here(params$path_analysis, "reports")
 source(here::here(script_dir, "main-effect_plus_interaction-effect_continuous-features_simulation.R"))
 source(here::here(script_dir, "create_html_datatable.R"))
 source(here::here(script_dir, "process_sim_yaml.R"))
+source(here::here(script_dir, "calc-uni.R"))
 ```
 
 ```{r sim-args}
@@ -160,6 +151,7 @@ head(npdr_res, n = 15) |>
   set_table_properties(align = "center")
 ```
 
+## Visualize Main effects
 ```{r visualize-MainEffects, fig.align = "center", out.width = "90%"}
 
 # Main Effect Features
@@ -189,6 +181,7 @@ ggplot(plot_df, aes(x = Feature, y = `Center-scaled Feature Value`, color = Outc
 
 ```
 
+## Visualize Interaction Effects
 ```{r visualize-InteractionEffects, fig.align = "center", out.width = "100%"}
 
 # Interaction Effect Features
@@ -212,7 +205,67 @@ alphs <- c("Case" = 0.6, "Control" = 0.6)
 ggpairs(plot_df, aes(color = Outcome, fill = Outcome, alpha = 0.7),
         columns = 6:10) +
   discrete_scale(aesthetics = c("fill", "color"), palette = grDevices::colorRampPalette(c("#7a0177", "#225ea8"))) +
-  theme_bw()
+  ggtitle("Simulated Features With Interaction Effect") +
+  theme_bw() +
+  theme(plot.title = element_text(size = 18, face = "bold", color = "black", hjust = 0.5))
+```
+
+## Standard Univariate Statistics for Detecting Main Effects
+
+### t-test
+```{r, out.width = "70%", fig.align = "center"}
+head(create_stat_tab(.data = sim.dats, 
+                     test.name = "t-test", 
+                     response.name = "class") |> 
+       select(-all_of(c("estimate1", "estimate2", "parameter", "method", "formula"))), n = 10) |> 
+  format_stat_tab(n.digits = 3) |> 
+  flextable() |> 
+  set_table_properties(align = "center")
+```
+
+### Kolmogorov-Smirnov Test
+```{r, out.width = "70%", fig.align = "center"}
+head(create_stat_tab(.data = sim.dats, 
+                     test.name = "ks-test", 
+                     response.name = "class") |> 
+       select(-all_of(c("method", "formula", "exact"))), n = 10) |> 
+  format_stat_tab(n.digits = 3) |> 
+  flextable() |> 
+  set_table_properties(align = "center")
+```
+
+### Wilcoxon Rank Sum (or Mann-Whitney) Test
+```{r, out.width = "70%", fig.align = "center"}
+head(create_stat_tab(.data = sim.dats, 
+                     test.name = "wilcox-test", 
+                     response.name = "class") |> 
+       select(-all_of(c("method", "formula"))), n = 10) |> 
+  format_stat_tab(n.digits = 3) |> 
+  flextable() |> 
+  set_table_properties(align = "center")
+```
+
+### Kruskal-Wallis Test
+```{r, out.width = "70%", fig.align = "center"}
+
+head(create_stat_tab(.data = sim.dats, 
+                     test.name = "kw-test", 
+                     response.name = "class") |> 
+       select(-all_of(c("parameter", "method", "formula"))), n = 10) |> 
+  format_stat_tab(n.digits = 3) |> 
+  flextable() |> 
+  set_table_properties(align = "center")
+```
+
+### Test Statistic for Main Effect in Linear Model
+```{r, out.width = "70%", fig.align = "center"}
+
+head(create_stat_tab(.data = sim.dats, 
+                     test.name = "lm-test", 
+                     response.name = "class"), n = 10) |> 
+  format_stat_tab(n.digits = 3) |> 
+  flextable() |> 
+  set_table_properties(align = "center")
 ```
 
 
