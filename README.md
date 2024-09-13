@@ -40,6 +40,28 @@ sim_mixed_fn(seed             = 1234,       # seed for reproducibility
              pct.mixed        = 0.5,        # proportion interaction effect out of all functional independent variables
              label            = "class") |> # name of outcome or response
              as_tibble()
+             
+# A tibble: 100 × 101
+   simvar1 simvar2 simvar3 simvar4 simvar5 simvar6 simvar7 simvar8 simvar9
+     <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl>
+ 1  -0.209 -1.34   -0.645  -2.23    -0.564    7.37    7.70    8.50    8.87
+ 2  -0.202 -0.682  -1.35    0.614   -0.624    7.39    7.49    6.82    6.53
+ 3  -0.116 -0.898   0.337  -1.26     0.601    5.01    4.91    4.88    4.11
+ 4   1.19  -0.749   1.61    1.45    -0.527    5.19    4.94    4.43    4.68
+ 5  -0.276  0.516  -1.07    0.476    0.896    7.31    7.14    6.77    5.86
+ 6  -1.13   0.0841  0.908  -1.16     1.08     6.32    6.28    7.12    6.61
+ 7   0.474  1.47    0.0368  0.361    0.511    5.64    5.56    6.58    6.40
+ 8  -0.250 -0.865   0.350  -0.0804  -1.39     7.25    7.36    6.89    6.30
+ 9   0.223  1.20    0.831   0.662    0.679    7.43    8.57    8.50    9.16
+10   0.424  1.35   -1.38    0.693   -0.140    6.42    6.26    4.98    5.83
+# ℹ 90 more rows
+# ℹ 92 more variables: simvar10 <dbl>, var1 <dbl>, var2 <dbl>,
+#   var3 <dbl>, var4 <dbl>, var5 <dbl>, var6 <dbl>, var7 <dbl>,
+#   var8 <dbl>, var9 <dbl>, var10 <dbl>, var11 <dbl>, var12 <dbl>,
+#   var13 <dbl>, var14 <dbl>, var15 <dbl>, var16 <dbl>, var17 <dbl>,
+#   var18 <dbl>, var19 <dbl>, var20 <dbl>, var21 <dbl>, var22 <dbl>,
+#   var23 <dbl>, var24 <dbl>, var25 <dbl>, var26 <dbl>, var27 <dbl>, …
+# ℹ Use `print(n = ...)` to see more rows
 ```
 
 
